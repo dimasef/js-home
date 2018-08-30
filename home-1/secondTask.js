@@ -21,7 +21,6 @@ document.querySelector(".home-2").style.display = 'block';
 	let showAdressCompany = (btn, data) => {
 		let companyAdressPlace = document.querySelector(".companyAdress"),
 			adressObj = {};
-			console.log( btn )
 			btn.onclick = () => {
 				adressObj = data.find(elem => elem._id === btn.dataset.id).address;
 				companyAdressPlace.innerHTML = `<b>Country:</b> ${adressObj.country}, <b>City:</b> ${adressObj.city}, 
@@ -119,7 +118,6 @@ document.querySelector(".home-2").style.display = 'block';
 			`;
 
 			let btn = fragment.querySelector('.show-adress');
-			console.log( fragment, btn )
 			showAdressCompany( btn, data);
 
 			document.querySelector(".company-list").appendChild(fragment)
@@ -139,10 +137,9 @@ document.querySelector(".home-2").style.display = 'block';
 				let newData = {};
 				if(balanceSort.dataset.sort === "0") {
 					newData = Object.assign([], data);
-					let sortedArray = newData.sort((a,b) => {
+					showCompanyTable(newData.sort((a,b) => {
 						return (a.balance < b.balance) ? -1 : 1;
-					})
-					showCompanyTable();
+					}));
 					balanceSort.dataset.sort = "1";
 					balanceSort.querySelector("span").className = 'sorted';
 				} else {
