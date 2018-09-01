@@ -16,13 +16,13 @@
         this.growPopulation = function() {
             var born = populationMultiplyRate * 100
             this.population += born;
-            console.log(`за один цикл прибавилось столько населения на планете "${this.planet}": `, this.population);
+            console.log(`За один цикл прибавилось столько населения на планете "${this.planet}": `, this.population);
         };
 
         this.Cataclysm = function() {
             var die = populationMultiplyRate * 10000;
             this.population -=  die;
-            console.log(`от катаклизма погибло  ${die} человек на планете "${this.planet}" `, this.population);
+            console.log(`От катаклизма погибло ${die} человек на планете "${this.planet}" `, this.population);
         };
 
         this.rotatePlanet = function() {
