@@ -1,15 +1,9 @@
 "use strict";
 
 (function () {
-	let main = document.getElementById("main");
 
-	let compSort = main.getElementById("company-sort");
-	let balancepSort = main.getElementById("balance-sort");
-
-	async function getJsonData(){
-		const data = await fetch("http://www.json-generator.com/api/json/get/ceRHciXcVu?indent=2");
-		return await data.json();
-	}	
+	let compSort = document.getElementById("company-sort");
+	let balancepSort = document.getElementById("balance-sort");
 
 	const _showAdress = Symbol('_showAdress');
 	const _showDateReg = Symbol('_showDateReg');
@@ -24,7 +18,7 @@
 		}
 
 		[_showAdress] (event) {
-			let companyAdressPlace = main.getElementById("companyAdress");
+			let companyAdressPlace = document.getElementById("companyAdress");
 			let id = event.path[0].dataset.id;
 			let adressObj = this.data.find(elem => elem._id === id).address;
 
@@ -34,7 +28,7 @@
 		}
 
 		[_showDateReg] (event) {
-			let showDateReg = main.getElementById("companyDateReg");
+			let showDateReg = document.getElementById("companyDateReg");
 			let id = event.path[0].dataset.id;
 			let regDate = this.data.find(elem => elem._id === id).registered;
 
@@ -42,7 +36,7 @@
 		}
 
 		showCompanyTable (isSorted) {
-			let companyTable = main.getElementById("company-list"); 
+			let companyTable = document.getElementById("company-list"); 
 
 			if(isSorted) 
 				companyTable.innerHTML = "";
@@ -98,9 +92,12 @@
 			}
 		}
 	}
+	async function getJsonData(){
+		const data = await fetch("http://www.json-generator.com/api/json/get/ceRHciXcVu?indent=2");
+		return await data.json();
+	}	
 
-	getJsonData()
-	.then( data => {
+	getJsonData().then( data => {
 		let company = new Company(data);
 		
 		company.showCompanyTable();
