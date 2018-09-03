@@ -110,7 +110,7 @@
                 }
             }
         }
-
+        
         countAnimals() {
             console.log(this.AnimalCount);
         }
