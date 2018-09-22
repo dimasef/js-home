@@ -1,0 +1,94 @@
+.home-1, .home-2, .employers {
+	display: none;
+}
+input:focus,
+button:focus {
+	outline: none;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    padding: 8px;
+}
+.contact-block {
+	width: 400px;
+}
+.employer-name {
+	width: 500px;
+    height: 30px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 2px;
+    border: 1px solid #e0e0e0;
+    padding-left: 10px;
+}
+.show-adress, .show-employer {
+	width: 110px;
+    font-size: 14px;
+    background-color: #009688;
+    border: 0px;
+    border-radius: 2px;
+    color: white;
+    height: 30px;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+.show-employer {
+	background-color: #03A9F4;
+	margin-bottom: 0px;
+}
+.balance-sortm {
+	cursor: pointer;
+}
+.balance-sort:hover,
+.employers-sort:hover,
+.back:hover,
+.gender-sort:hover,
+.age-sort:hover {
+	color: #FF9800;
+	cursor: pointer;
+}
+.find-employer {
+	background: #4bbb4f;
+    color: white;
+    border: 0px;
+    font-size: 16px;
+    height: 33px;
+    width: 100px;
+    position: relative;
+    top: -1px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.companyName {
+	text-align: center;
+}
+.companyAdress {
+	margin-top: 15px;
+}
+.error-message {
+	margin-bottom: 10px;
+    color: #E91E63;
+}
+.mainTable {
+	text-align: center;
+}
+.sort-link span {
+    font-size: 12px;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    display: inline-block;
+} 
+.sort-link .sorted {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    display: inline-block;
+}

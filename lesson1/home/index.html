@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<body>
+    <div class="home-1">
+        <div id="mainBlock"><ul></ul></div>
+        <input type="text" placeholder="Введите название курса" class="input-fild">
+        <button class="btn-fild" id="search-btn">Найти</button>
+        <div id="resupt-place"></div>
+    </div>
+    <div class="home-2">
+        <div class="company">
+            <h1 class="mainTable">Company List</h1>
+            <table>
+                <tr>
+                    <th>Company</th>
+                    <th><span data-sort="0" title="sorting" class="sort-link balance-sort">Balance <span>&#9660;</span></span></th>
+                    <th>Registered</th>
+                    <th><span data-sort="0" title="sorting" class="sort-link employers-sort">Employers <span>&#9660;</span></span></th>
+                    <th>Show info</th>
+                </tr>
+                <tbody class="company-list"></tbody>
+            </table>
+            <div class="companyAdress"></div>
+        </div>
+        <div class="employers">
+            <div class="backPlace">
+                <h1 class="companyName"></h1>
+                <span class="back"> < Back to the list of companies</span>
+            </div>
+            <div>
+                <input type="text" placeholder="Enter the name" class="employer-name">
+                <button class="find-employer" data-companyid="">Find</button>
+                <div class="error-message"></div>
+            </div>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th><span data-sort="0" title="sorting" class="sort-link gender-sort">Gender <span>&#9660;</span></span></th>
+                    <th><span data-sort="0" title="sorting" class="sort-link age-sort">Age <span>&#9660;</span></span></th>
+                    <th>Contacts</th>
+                </tr>
+                <tbody class="employers-list"></tbody>
+            </table>
+        </div>
+    </div>
+    <!-- <script src="1.1.js"></script> -->
+    <script src="1.2.js"></script>
+</body>
+</html>
