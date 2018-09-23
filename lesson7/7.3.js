@@ -3,7 +3,7 @@
 
   У вас есть данные о исполнителях и песнях. Задание делится на три модуля:
     1. Список исполнителей и песен (Находится слева) - отуда можно включить
-    песню в исполнение иди добавить в плейлист.
+    песню в исполнение или добавить в плейлист.
     Если песня уже есть в плейлисте, дважды добавить её нельзя.
 
     2. Плейлист (Находится справа) - список выбраных песен, песню можно удалить,
@@ -128,14 +128,64 @@ const MusicList = [
   }
 ]
 
-const MusicBox = () => {
-  const MusicBox = document.getElementById('MusicBox');
-  MusicList.map( Artist => {
-    MusicBox.innerHTML += `<div><h4>${Artist.title}</h4><ul>`;
-    Artist.songs.map( song => {
-      MusicBox.innerHTML += `<li>${song.name}</li>`;
-    })
-    MusicBox.innerHTML += '</ul></div>';
-  });
+function Observable(){
+  // Создаем список подписаных обьектов
+  var observers = [];
+  // Оповещение всех подписчиков о сообщении
+  this.sendMessage = function( msg ){
+      observers.map( ( obs ) => {
+        obs.notify(msg);
+      });
+  };
+  // Добавим наблюдателя
+  this.addObserver = function( observer ){
+    observers.push( observer );
+  };
 }
+// Сам наблюдатель:
+function Observer( behavior ){
+  this.notify = function( callback ){
+    behavior( callback );
+  };
+}
+
+  // Создадим наблюдателя:
+let observable = new Observable();
+
+// Трех обсерверов:
+let playListObs = new Observer( function(id){
+    let filtredToPlayList = MusicList.filter( item => Number(item.id) === Number(id) );
+        Cart.push( filtredToPlayList[0] );
+        renderBasket();
+  });
+
+  let serverObs = new Observer( (id) => {
+      let filtredToBasket = Products.filter( item => Number(item.id) === Number(id) );
+      let msg = `Товар ${filtredToBasket[0].name} добавлен в корзину`;
+      console.log( msg );
+  });
+
+  let iconObs = new Observer( (id) => {
+      let filtredToBasket = Products.filter( item => Number(item.id) === Number(id) );
+
+      let products__cart = document.getElementById('products__cart');
+          products__cart.innerText = Cart.length;
+  });
+
+  observable.addObserver( playListObs );
+  observable.addObserver( serverObs );
+  observable.addObserver( iconObs );
+
+
+const MusicBox = () => {
+  	const MusicBox = document.getElementById('MusicBox');
+  	MusicList.map( Artist => {
+		MusicBox.innerHTML += `<div><h4>${Artist.title}</h4><ul>`;
+		Artist.songs.map( song => {
+			MusicBox.innerHTML += `<li>${song.name}</li>`;
+		});
+		MusicBox.innerHTML += '</ul></div>';
+	});
+}
+MusicBox();
 
