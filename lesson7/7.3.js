@@ -22,7 +22,7 @@ const MusicList = [
       {
         id: 1,
         name: 'Du Hast',
-        time: [3, 12]
+		time: [3, 12]
       },
       {
         id: 2,
@@ -129,63 +129,60 @@ const MusicList = [
 ]
 
 function Observable(){
-  // Создаем список подписаных обьектов
+
   var observers = [];
-  // Оповещение всех подписчиков о сообщении
+
   this.sendMessage = function( msg ){
       observers.map( ( obs ) => {
         obs.notify(msg);
       });
   };
-  // Добавим наблюдателя
+
   this.addObserver = function( observer ){
     observers.push( observer );
   };
 }
-// Сам наблюдатель:
+
 function Observer( behavior ){
   this.notify = function( callback ){
     behavior( callback );
   };
 }
 
-  // Создадим наблюдателя:
 let observable = new Observable();
 
-// Трех обсерверов:
-let playListObs = new Observer( function(id){
+let playListObs = new Observer(id => {
     let filtredToPlayList = MusicList.filter( item => Number(item.id) === Number(id) );
-        Cart.push( filtredToPlayList[0] );
-        renderBasket();
-  });
+    playList.push( filtredToPlayList[0] );
+});
 
-  let serverObs = new Observer( (id) => {
-      let filtredToBasket = Products.filter( item => Number(item.id) === Number(id) );
-      let msg = `Товар ${filtredToBasket[0].name} добавлен в корзину`;
-      console.log( msg );
-  });
+let playTrek = new Observer(id => {
+	let filtredToTrek = MusicList.filter( item => Number(item.id) === Number(id) );
+	let msg = `Песня ${filtredToTrek[0].name} играет тыц-тыц-тыц... =/`;
+    console.log(msg);
+});
 
-  let iconObs = new Observer( (id) => {
-      let filtredToBasket = Products.filter( item => Number(item.id) === Number(id) );
+observable.addObserver( playListObs );
+observable.addObserver( playTrek );
 
-      let products__cart = document.getElementById('products__cart');
-          products__cart.innerText = Cart.length;
-  });
-
-  observable.addObserver( playListObs );
-  observable.addObserver( serverObs );
-  observable.addObserver( iconObs );
-
-
+let playList = [];
 const MusicBox = () => {
   	const MusicBox = document.getElementById('MusicBox');
   	MusicList.map( Artist => {
 		MusicBox.innerHTML += `<div><h4>${Artist.title}</h4><ul>`;
 		Artist.songs.map( song => {
-			MusicBox.innerHTML += `<li>${song.name}</li>`;
+			MusicBox.innerHTML += `<li data-song-id="${song.id}">${song.name}</li>`;
 		});
 		MusicBox.innerHTML += '</ul></div>';
-	});
+  });
+  let songName = MusicBox.querySelectorAll('li');
+  songName.forEach(item => {
+	item.onclick = function() {
+		//.querySelector("h4").innerText
+		console.log(this.parentNode);
+		observable.sendMessage(this.dataset.songId);
+	}
+  });
 }
 MusicBox();
 
