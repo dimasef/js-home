@@ -29,7 +29,7 @@ wrapped('/-/-/', '___', "|-|-");
 может быть преобразована в число
 */
 
-
+//tested in jsbin servis ================================================================
 function checkNumDecorator( target, key, descriptor ) {
     const originFunction = descriptor.value.bind(this);
     descriptor.value = function( ...args ) {
