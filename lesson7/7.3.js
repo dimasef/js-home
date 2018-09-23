@@ -178,7 +178,7 @@ const MusicBox = () => {
   let songName = MusicBox.querySelectorAll('li');
   songName.forEach(item => {
 	item.onclick = function() {
-		//.querySelector("h4").innerText
+		//todo доделать потом =(
 		console.log(this.parentNode);
 		observable.sendMessage(this.dataset.songId);
 	}
